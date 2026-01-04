@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     title: "Rohosen Bhattacharya | Full-Stack Developer & Designer",
     description:
       "Full-stack developer and designer crafting digital experiences.",
-    creator: "@rohosen",
+    creator: "@Rohosen_",
   },
   robots: {
     index: true,

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
 
 const socialLinks = [
-  { href: "https://github.com/rohosen", icon: Github, label: "GitHub" },
-  { href: "https://linkedin.com/in/rohosen", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://twitter.com/rohosen", icon: Twitter, label: "Twitter" },
+  { href: "https://github.com/roho7", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/rohosen-bhattacharya-9311611aa/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://x.com/Rohosen_", icon: Twitter, label: "Twitter" },
   { href: "mailto:rohosen2@gmail.com?subject=Hello Roho! I'd like to discuss a project with you.", icon: Mail, label: "Email" },
 ];
 
@@ -23,7 +23,7 @@ export function Footer() {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6"
             >
-              Let's work
+              Let&apos;s work
               <br />
               <span className="text-primary">together</span>
             </motion.h2>
@@ -34,7 +34,7 @@ export function Footer() {
               transition={{ delay: 0.1 }}
               className="text-muted-foreground text-lg max-w-md"
             >
-              I'm always open to discussing new projects, creative ideas, or
+              I&apos;m always open to discussing new projects, creative ideas, or
               opportunities to be part of your vision.
             </motion.p>
           </div>

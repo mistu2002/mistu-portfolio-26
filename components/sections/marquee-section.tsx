@@ -10,23 +10,28 @@ const skills = [
   "Node.js",
   "Tailwind CSS",
   "PostgreSQL",
-  "Firebase",
+  "Express.js",
   "Figma",
-  "UI/UX Design",
-  "Full-Stack",
-  "HCI Research",
+"Clickhouse",
+"Python",
+"Docker",
+"Kubernetes",
+"AWS",
+"GCP",
+"BullMQ",
+"RabbitMQ",
+"Redis"
+
 ];
 
 const domains = [
   "Web Development",
   "Mobile Apps",
-  "Design Systems",
-  "Product Design",
-  "Motion Graphics",
-  "User Research",
-  "Prototyping",
-  "Frontend",
-  "Backend",
+  "System Design",
+  "Product Development",
+  "Backend Development",
+  "AI Agents",
+  "Frontend Optimization",
 ];
 
 function MarqueeItem({ text, highlight = false }: { text: string; highlight?: boolean }) {

@@ -77,7 +77,7 @@ export function AnimatedText({
   
   return (
     <MotionComponent
-      ref={ref}
+      ref={ref as React.RefObject<HTMLParagraphElement>}
       initial={{ opacity: 0, y: animation === "slide" ? 30 : 0, filter: animation === "blur" ? "blur(10px)" : "none" }}
       animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
       transition={{ duration: 0.6, delay, ease: [0.25, 0.4, 0.25, 1] }}

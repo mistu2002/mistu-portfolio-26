@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "./button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -45,10 +46,10 @@ export function Navbar() {
             <Link href="/" className="flex items-center gap-2">
               <motion.div
                 whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-                className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary flex items-center justify-center"
+                transition={{ duration: 1.5, damping: 20, mass: 1.5, ease: "easeInOut" }}
+                className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center"
               >
-                <span className="text-primary-foreground font-bold text-lg">R</span>
+                <Image src="/logo.png" alt="Rohosen" width={32} height={32} className="text-primary-foreground font-bold text-lg" />
               </motion.div>
               <span className="font-display font-bold text-lg hidden sm:block">
                 Rohosen
