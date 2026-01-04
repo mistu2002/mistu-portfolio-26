@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway     # Git provider proxy (Netlify’s Git Gateway if hosting on Netlify)
+  branch: main          # branch you’ll commit content to
+
+local_backend: true     # local git commits during dev
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
