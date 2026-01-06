@@ -56,17 +56,6 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
               )}
             </motion.div>
 
-            {project.description && (
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg text-muted-foreground leading-relaxed mb-8"
-              >
-                {project.description}
-              </motion.p>
-            )}
-
             {project.tags && project.tags.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -117,30 +106,6 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
             )}
           </div>
 
-          {project.date && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="grid grid-cols-2 gap-6"
-            >
-              {project.date && (
-                <InfoCard label="Date" value={project.date} />
-              )}
-              {project.tags && project.tags.length > 0 && (
-                <div className="col-span-2 p-6 rounded-xl bg-card border border-border">
-                  <span className="text-sm text-muted-foreground block mb-2">Tags</span>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          )}
         </div>
       </div>
 
