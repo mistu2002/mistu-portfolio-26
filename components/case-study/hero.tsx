@@ -40,29 +40,29 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {project.year && (
+              {project.date && (
                 <span className="text-primary font-mono text-sm mb-4 block">
-                  {project.year}
+                  {project.date}
                 </span>
               )}
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold tracking-tight mb-4">
                 {project.title}
               </h1>
-              {project.subtitle && (
+              {project.description && (
                 <p className="text-xl md:text-2xl text-muted-foreground mb-6">
-                  {project.subtitle}
+                  {project.description}
                 </p>
               )}
             </motion.div>
 
-            {project.excerpt && (
+            {project.description && (
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-lg text-muted-foreground leading-relaxed mb-8"
               >
-                {project.excerpt}
+                {project.description}
               </motion.p>
             )}
 
@@ -81,42 +81,34 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
               </motion.div>
             )}
 
-            {project.links && (
+            {project.websiteLink && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="flex flex-wrap gap-3"
               >
-                {project.links.live && (
-                  <Link href={project.links.live} target="_blank">
+                {project.websiteLink && (
+                  <Link href={project.websiteLink} target="_blank">
                     <Button variant="glow">
                       <ExternalLink className="w-4 h-4" />
                       View Live
                     </Button>
                   </Link>
                 )}
-                {project.links.github && (
-                  <Link href={project.links.github} target="_blank">
+                {project.behanceLink && (
+                  <Link href={project.behanceLink} target="_blank">
                     <Button variant="outline">
                       <Github className="w-4 h-4" />
                       GitHub
                     </Button>
                   </Link>
                 )}
-                {project.links.figma && (
-                  <Link href={project.links.figma} target="_blank">
+                {project.video && (
+                  <Link href={project.video} target="_blank">
                     <Button variant="outline">
                       <Figma className="w-4 h-4" />
                       Figma
-                    </Button>
-                  </Link>
-                )}
-                {project.links.video && (
-                  <Link href={project.links.video} target="_blank">
-                    <Button variant="outline">
-                      <Play className="w-4 h-4" />
-                      Demo
                     </Button>
                   </Link>
                 )}
@@ -124,32 +116,23 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
             )}
           </div>
 
-          {project.projectInfo && (
+          {project.date && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
               className="grid grid-cols-2 gap-6"
             >
-              {project.projectInfo.platform && (
-                <InfoCard label="Platform" value={project.projectInfo.platform} />
+              {project.date && (
+                <InfoCard label="Date" value={project.date} />
               )}
-              {project.projectInfo.duration && (
-                <InfoCard label="Duration" value={project.projectInfo.duration} />
-              )}
-              {project.projectInfo.team && (
-                <InfoCard label="Team" value={project.projectInfo.team} />
-              )}
-              {project.projectInfo.client && (
-                <InfoCard label="Client" value={project.projectInfo.client} />
-              )}
-              {project.projectInfo.role && project.projectInfo.role.length > 0 && (
+              {project.tags && project.tags.length > 0 && (
                 <div className="col-span-2 p-6 rounded-xl bg-card border border-border">
-                  <span className="text-sm text-muted-foreground block mb-2">My Role</span>
+                  <span className="text-sm text-muted-foreground block mb-2">Tags</span>
                   <div className="flex flex-wrap gap-2">
-                    {project.projectInfo.role.map((role) => (
-                      <Badge key={role} variant="outline">
-                        {role}
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="outline">
+                        {tag}
                       </Badge>
                     ))}
                   </div>
@@ -160,7 +143,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         </div>
       </div>
 
-      {project.heroImage?.asset && (
+      {project.coverImage && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -170,8 +153,8 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
           <div className="container mx-auto px-4 md:px-6">
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-2xl md:rounded-3xl">
               <Image
-                src={urlFor(project.heroImage).width(1920).height(820).url()}
-                alt={project.heroImage.alt || project.title}
+                src={urlFor(project.coverImage).width(1920).height(820).url()}
+                alt={project.coverImage.alt || project.title}
                 fill
                 priority
                 className="object-cover"
@@ -182,7 +165,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         </motion.div>
       )}
 
-      {project.heroVideo && (
+      {project.video && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -191,7 +174,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         >
           <div className="relative aspect-video overflow-hidden rounded-2xl md:rounded-3xl bg-card">
             <iframe
-              src={getEmbedUrl(project.heroVideo)}
+              src={getEmbedUrl(project.video)}
               className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

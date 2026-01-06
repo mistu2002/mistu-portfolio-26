@@ -8,7 +8,7 @@ import { Suspense } from "react";
 async function ProjectsSection() {
   const projects = await getProjects();
 
-  return <Projects projects={projects} categories={[]} />;
+  return <Projects projects={projects} tags={[]} />;
 }
 
 export default function Home() {
