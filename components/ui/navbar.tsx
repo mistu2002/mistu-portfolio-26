@@ -30,6 +30,25 @@ export function Navbar() {
     }
   });
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    if (href.startsWith("/#") && pathname === "/") {
+      e.preventDefault();
+      const targetId = href.replace("/#", "");
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        const offset = 80; // Navbar height offset
+        const elementPosition = elem.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+        window.history.pushState(null, "", href);
+      }
+    }
+  };
+
   if (pathname?.startsWith("/studio")) return null;
 
   return (
@@ -51,7 +70,12 @@ export function Navbar() {
 
           <nav className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-2 py-1">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary">
+              <Link 
+                key={link.href} 
+                href={link.href} 
+                onClick={(e) => handleScroll(e, link.href)}
+                className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
+              >
                 {link.label}
                 {pathname === link.href && (
                   <motion.div
@@ -106,7 +130,10 @@ export function Navbar() {
               >
                 <Link
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    handleScroll(e, link.href);
+                  }}
                   className="text-5xl font-display font-bold hover:text-stroke hover:text-transparent transition-all duration-300"
                 >
                   {link.label}
