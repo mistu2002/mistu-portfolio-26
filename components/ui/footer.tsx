@@ -8,94 +8,75 @@ const socialLinks = [
   { href: "https://github.com/roho7", icon: Github, label: "GitHub" },
   { href: "https://www.linkedin.com/in/rohosen-bhattacharya-9311611aa/", icon: Linkedin, label: "LinkedIn" },
   { href: "https://x.com/Rohosen_", icon: Twitter, label: "Twitter" },
-  { href: "mailto:rohosen2@gmail.com?subject=Hello Roho! I'd like to discuss a project with you.", icon: Mail, label: "Email" },
 ];
 
 export function Footer() {
   return (
-    <footer id="contact" className="border-t border-border bg-card/50">
-      <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
-          <div>
+    <footer id="contact" className="relative bg-foreground text-background overflow-hidden">
+      {/* Decorative Blob */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
+      
+      <div className="container mx-auto px-4 md:px-8 py-20 md:py-32 relative z-10">
+        <div className="flex flex-col gap-12 md:gap-24">
+          {/* Header Section */}
+          <div className="space-y-6">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6"
+              className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tight leading-[0.9]"
             >
-              Let&apos;s work
+              Let&apos;s create
               <br />
-              <span className="text-primary">together</span>
+              <span className="text-stroke-sm text-transparent hover:text-primary transition-colors duration-500">
+                something beautiful
+              </span>
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-muted-foreground text-lg max-w-md"
-            >
-              I&apos;m always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision.
-            </motion.p>
           </div>
 
-          <div className="flex flex-col justify-between">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
+          {/* Contact Actions */}
+          <div className="grid md:grid-cols-2 gap-12 items-end">
+            <div>
+              <p className="text-xl md:text-2xl text-background/60 mb-8 max-w-lg">
+                Have a project in mind or just want to say hello? I&apos;m always open to discussing new ideas.
+              </p>
               <Link
-                href="mailto:rohosen2@gmail.com?subject=Hello Roho! I'd like to discuss a project with you."
-                className="group inline-flex items-center gap-3 text-2xl md:text-3xl font-display font-bold hover:text-primary transition-colors"
+                href="mailto:rohosen2@gmail.com"
+                className="inline-flex items-center gap-4 bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 rounded-full text-xl font-medium hover:scale-105 hover:rotate-2 transition-transform duration-300"
               >
-                rohosen2@gmail.com
-                <ArrowUpRight className="w-6 h-6 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                Start a Project
+                <ArrowUpRight className="w-6 h-6" />
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="flex gap-4 mt-8"
-            >
-              {socialLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-                >
-                  <link.icon className="w-5 h-5" />
-                  <span className="sr-only">{link.label}</span>
-                </Link>
-              ))}
-            </motion.div>
+            <div className="flex flex-col gap-8 md:items-end">
+               <div className="flex gap-4">
+                 {socialLinks.map((link) => (
+                   <Link
+                     key={link.label}
+                     href={link.href}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="p-4 rounded-full border border-background/20 hover:bg-background hover:text-foreground transition-all duration-300 group"
+                   >
+                     <link.icon className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                   </Link>
+                 ))}
+               </div>
+               <div className="text-right">
+                 <p className="text-background/40 font-display text-lg">Based in India</p>
+                 <p className="text-background/40 font-display text-lg">Working Worldwide</p>
+               </div>
+            </div>
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4"
-        >
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Rohosen Bhattacharya. All rights reserved.
-          </p>
-          <p className="text-muted-foreground text-sm">
-            Designed & Built with{" "}
-            <span className="text-primary">Next.js</span> &{" "}
-            <span className="text-primary">Sanity</span>
-          </p>
-        </motion.div>
+        {/* Bottom Bar */}
+        <div className="mt-24 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-background/40 text-sm">
+          <p>© {new Date().getFullYear()} Rohosen. All Rights Reserved.</p>
+          <p className="font-mono">DESIGNED & CODED WITH LOVE ❤️</p>
+        </div>
       </div>
     </footer>
   );
 }
-

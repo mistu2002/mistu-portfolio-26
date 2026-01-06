@@ -1,108 +1,82 @@
 import { groq } from "next-sanity";
 
+// Get all projects for listing/grid view
 export const projectsQuery = groq`
-  *[_type == "project" && !hidden] | order(order asc, publishedAt desc) {
+  *[_type == "project"] | order(order asc, date desc) {
     _id,
     title,
     slug,
-    subtitle,
-    excerpt,
-    year,
+    description,
+    date,
     tags,
     featured,
-    heroImage {
+    coverImage {
       asset->,
       alt
-    },
-    category->{
-      title,
-      slug
     }
   }
 `;
 
-export const projectsByCategory = groq`
-  *[_type == "project" && !hidden && category->slug.current == $category] | order(order asc) {
-    _id,
-    title,
-    slug,
-    subtitle,
-    excerpt,
-    year,
-    tags,
-    featured,
-    heroImage {
-      asset->,
-      alt
-    },
-    category->{
-      title,
-      slug
-    }
-  }
-`;
-
+// Get only featured projects
 export const featuredProjectsQuery = groq`
-  *[_type == "project" && !hidden && featured == true] | order(order asc) {
+  *[_type == "project" && featured == true] | order(order asc, date desc) {
     _id,
     title,
     slug,
-    subtitle,
-    excerpt,
-    heroImage {
+    description,
+    date,
+    tags,
+    featured,
+    coverImage {
       asset->,
       alt
     }
   }
 `;
 
+// Get single project by slug with full details
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     _id,
     title,
     slug,
-    subtitle,
-    excerpt,
-    year,
+    description,
+    date,
     tags,
-    heroImage {
+    featured,
+    coverImage {
       asset->,
       alt
     },
-    heroVideo,
-    projectInfo,
-    content[] {
-      ...,
-      _type == "image" => {
-        ...,
-        asset->
-      },
-      _type == "imageGallery" => {
-        ...,
-        images[] {
-          ...,
-          asset->
-        }
-      },
-      _type == "section" => {
-        ...,
-        sectionContent[] {
-          ...,
-          _type == "image" => {
-            ...,
-            asset->
-          }
-        }
-      }
+    projectImages[] {
+      asset->,
+      alt,
+      caption
     },
-    links,
-    category->{
-      title,
-      slug
-    }
+    video,
+    websiteLink,
+    behanceLink
   }
 `;
 
+// Get all project slugs for static generation
+export const projectSlugsQuery = groq`
+  *[_type == "project"].slug.current
+`;
+
+// =====================================
+// DEPRECATED QUERIES (Kept for reference)
+// =====================================
+
+/*
+// Projects filtered by category
+export const projectsByCategory = groq`
+  *[_type == "project" && !hidden && category->slug.current == $category] | order(order asc) {
+    ...
+  }
+`;
+
+// All categories
 export const categoriesQuery = groq`
   *[_type == "category"] | order(title asc) {
     _id,
@@ -111,8 +85,4 @@ export const categoriesQuery = groq`
     description
   }
 `;
-
-export const projectSlugsQuery = groq`
-  *[_type == "project" && !hidden].slug.current
-`;
-
+*/

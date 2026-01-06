@@ -58,6 +58,7 @@ const config: Config = {
         },
       },
       borderRadius: {
+        xl: "calc(var(--radius) + 0.5rem)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
@@ -119,6 +120,21 @@ const config: Config = {
         gradient: {
           to: { backgroundPosition: "var(--bg-size) 0" },
         },
+        "float-slow": {
+          "0%, 100%": { transform: "translate(0, 0) rotate(0deg)" },
+          "33%": { transform: "translate(30px, -30px) rotate(5deg)" },
+          "66%": { transform: "translate(-20px, 20px) rotate(-5deg)" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        morph: {
+          "0%, 100%": { borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%" },
+          "25%": { borderRadius: "58% 42% 75% 25% / 76% 46% 54% 24%" },
+          "50%": { borderRadius: "50% 50% 33% 67% / 55% 27% 73% 45%" },
+          "75%": { borderRadius: "33% 67% 58% 42% / 63% 68% 32% 37%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -135,6 +151,9 @@ const config: Config = {
         pulse: "pulse 2s ease-in-out infinite",
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         gradient: "gradient 8s linear infinite",
+        "float-slow": "float-slow 20s ease-in-out infinite",
+        "gradient-shift": "gradient-shift 8s ease infinite",
+        morph: "morph 8s ease-in-out infinite",
       },
     },
   },

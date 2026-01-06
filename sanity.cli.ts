@@ -2,11 +2,11 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: '4rq0irpr',
+    projectId: 'tpvq9z2o',
     dataset: 'production'
   },
   // Tip: You can use an environment variable for studioHost if you want to deploy separate Studios for production, staging, testing etc.
-  studioHost: 'portfolio-26'
+  studioHost: 'mistu-portfolio-26'
 })
 
 // import {defineCliConfig} from 'sanity/cli'

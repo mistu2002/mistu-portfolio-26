@@ -4,9 +4,9 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemas";
 
 export default defineConfig({
-  name: "portfolio",
-  title: "Portfolio Studio",
-  projectId: "4rq0irpr",
+  name: "mistu-portfolio",
+  title: "Mistu's Portfolio Studio",
+  projectId: "tpvq9z2o",
   dataset: "production",
   basePath: "/studio",
   plugins: [structureTool(), visionTool()],

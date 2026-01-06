@@ -1,6 +1,8 @@
 import project from "./project";
-import blockContent from "./blockContent";
-import category from "./category";
 
-export const schemaTypes = [project, blockContent, category];
+// DEPRECATED: Kept for reference but removed from schema
+// import blockContent from "./blockContent";
+// import category from "./category";
+
+export const schemaTypes = [project];
 

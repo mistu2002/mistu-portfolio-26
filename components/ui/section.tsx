@@ -21,7 +21,7 @@ export function Section({ children, className, id }: SectionProps) {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-      className={cn("py-20 md:py-32", className)}
+      className={cn("py-24 md:py-40", className)}
     >
       {children}
     </motion.section>
@@ -37,21 +37,22 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ number, title, subtitle, className }: SectionHeaderProps) {
   return (
-    <div className={cn("mb-12 md:mb-16", className)}>
+    <div className={cn("mb-16 md:mb-24 flex flex-col md:flex-row gap-8 md:gap-16 items-start", className)}>
       {number && (
-        <span className="text-primary font-mono text-sm mb-2 block">
-          _{number}
+        <span className="text-8xl md:text-9xl font-display font-bold text-foreground/5 leading-none -mt-4 select-none">
+          {number}
         </span>
       )}
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="text-muted-foreground text-lg mt-4 max-w-2xl">
-          {subtitle}
-        </p>
-      )}
+      <div>
+        <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-6">
+          {title}
+        </h2>
+        {subtitle && (
+          <p className="text-muted-foreground text-xl max-w-xl leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
-

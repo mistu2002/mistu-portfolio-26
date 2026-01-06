@@ -3,21 +3,21 @@
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ProjectCard, ProjectCardSkeleton } from "@/components/ui/project-card";
 import { Button } from "@/components/ui/button";
-import type { ProjectCard as ProjectCardType, Category } from "@/sanity/lib/types";
+import type { ProjectCard as ProjectCardType } from "@/sanity/lib/types";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface ProjectsProps {
   projects: ProjectCardType[];
-  categories: Category[];
+  tags: string[];
 }
 
-export function Projects({ projects, categories }: ProjectsProps) {
+export function Projects({ projects, tags }: ProjectsProps) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filteredProjects = activeCategory
-    ? projects.filter((p) => p.category?.slug?.current === activeCategory)
+    ? projects.filter((p) => p.tags?.includes(activeCategory))
     : projects;
 
   return (
@@ -29,7 +29,7 @@ export function Projects({ projects, categories }: ProjectsProps) {
           subtitle="A collection of projects I've worked on, from full-stack applications to design systems."
         />
 
-        {categories.length > 0 && (
+        {tags?.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-12">
             <Button
               variant={activeCategory === null ? "default" : "outline"}
@@ -38,14 +38,14 @@ export function Projects({ projects, categories }: ProjectsProps) {
             >
               All
             </Button>
-            {categories.map((category) => (
+            {tags.map((tag) => (
               <Button
-                key={category._id}
-                variant={activeCategory === category.slug?.current ? "default" : "outline"}
+                key={tag}
+                variant={activeCategory === tag ? "default" : "outline"}
                 size="sm"
-                onClick={() => setActiveCategory(category.slug?.current || null)}
+                onClick={() => setActiveCategory(tag || null)}
               >
-                {category.title}
+                {tag}
               </Button>
             ))}
           </div>

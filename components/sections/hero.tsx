@@ -1,121 +1,84 @@
 "use client";
 
 import { motion } from "motion/react";
-import { AnimatedText, AnimatedWords } from "@/components/ui/animated-text";
-import { Button } from "@/components/ui/button";
 import { ArrowDown, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { SlotMachine } from "@/components/ui/slot-machine";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-30" />
-      <div className="gradient-blur" />
-
-      <div className="absolute inset-0 noise pointer-events-none" />
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 2, delay: 0.5 }}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px]"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 2, delay: 0.8 }}
-        className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-[100px]"
-      />
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto">
+          {/* Top Tag */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="flex justify-center mb-12"
           >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-primary font-medium">
-              Looking for new projects
-            </span>
+            <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-foreground/10 bg-background/50 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-sm font-medium tracking-wide uppercase">Available for work</span>
+            </div>
           </motion.div>
 
-          <h1 className="text-4xl max-lg:my-8 md:text-7xl lg:text-8xl xl:text-9xl font-display font-bold tracking-tight mb-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          {/* Main Title */}
+          <div className="text-center mb-16 space-y-4">
+             <motion.h1
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="block"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9]"
             >
-              <SlotMachine
-                items={["Building", "Architecting", "Designing", "Developing"]}
-                interval={2800}
-                highlightColor={true}
-              />
-            </motion.div>
+              Hello
+              <span className="block text-primary italic font-serif">World</span>
+              {/* People */}
+            </motion.h1>
+            
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="block"
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ duration: 1, delay: 0.8 }}
+               className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mt-8"
             >
-              <SlotMachine
-                items={["AI Agents", "clean interfaces", "scalable backends", "automations"]}
-                interval={3500}
-              />
+               <p className="text-xl md:text-2xl text-muted-foreground max-w-lg text-center leading-relaxed">
+                 I&apos;m <span className="text-foreground font-bold">Mistu</span>, a wave of design, empathy, and just the right amount of chaos.
+               </p>
             </motion.div>
-          </h1>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
-          >
-            Currently working at{" "}
-            <a href="https://periskope.app" target="_blank" className="text-foreground font-semibold">
-              Periskope
-            </a>{" "}
-          </motion.p>
-
+          {/* Call to Actions */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
-            <Link href="#projects">
-              <Button size="lg" variant="glow">
-                View my work
-              </Button>
+            <Link href="#projects" className="group relative px-8 py-4 bg-foreground text-background rounded-full overflow-hidden">
+              <span className="relative z-10 font-medium text-lg group-hover:text-foreground transition-colors duration-300">View Work</span>
+              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
             </Link>
-            <Link href="#contact">
-              <Button size="lg" variant="outline">
-                Get in touch
-              </Button>
+            
+            <Link href="#contact" className="group px-8 py-4 rounded-full border border-foreground/20 hover:border-foreground transition-colors">
+              <span className="font-medium text-lg">Contact Me</span>
             </Link>
           </motion.div>
         </div>
       </div>
 
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ duration: 1, delay: 2 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
+        <span className="text-xs uppercase tracking-widest text-muted-foreground">Scroll</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <Link
-            href="#projects"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowDown className="w-6 h-6" />
-          </Link>
+          <ArrowDown className="w-5 h-5 text-foreground/50" />
         </motion.div>
       </motion.div>
     </section>

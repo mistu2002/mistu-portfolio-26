@@ -3,6 +3,10 @@ import { Space_Grotesk, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { AmbientBackground } from "@/components/ui/ambient-background";
+import { CloudBackground } from "@/components/ui/cloud-background";
+import { PageTransition } from "@/components/ui/page-transition";
+import { PaperBackground } from "@/components/ui/paper-background";
 
 const displayFont = Space_Grotesk({
   subsets: ["latin"],
@@ -24,36 +28,35 @@ const monoFont = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Rohosen Bhattacharya | Full-Stack Developer & Designer",
-    template: "%s | Rohosen Bhattacharya",
+    default: "Suchismita Das | Product Designer",
+    template: "%s | Suchismita Das",
   },
   description:
-    "Full-stack developer and designer crafting digital experiences that blend beautiful interfaces with powerful functionality.",
+    "Product designer specializing in UI/UX, brand identity, and visual design. Creating meaningful experiences that blend aesthetics with functionality.",
   keywords: [
-    "Full-Stack Developer",
+    "Product Designer",
     "UI/UX Designer",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Web Development",
+    "Visual Design",
+    "Brand Identity",
+    "Graphic Design",
+    "User Experience",
   ],
-  authors: [{ name: "Rohosen Bhattacharya" }],
-  creator: "Rohosen Bhattacharya",
+  authors: [{ name: "Suchismita Das" }],
+  creator: "Suchismita Das",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://roho.live",
-    title: "Rohosen Bhattacharya | Full-Stack Developer & Designer",
+    url: "https://suchismitadas.com",
+    title: "Suchismita Das | Product Designer",
     description:
-      "Full-stack developer and designer crafting digital experiences that blend beautiful interfaces with powerful functionality.",
-    siteName: "Rohosen Bhattacharya",
+      "Product designer specializing in UI/UX, brand identity, and visual design. Creating meaningful experiences that blend aesthetics with functionality.",
+    siteName: "Suchismita Das",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohosen Bhattacharya | Full-Stack Developer & Designer",
+    title: "Suchismita Das | Product Designer",
     description:
-      "Full-stack developer and designer crafting digital experiences.",
-    creator: "@Rohosen_",
+      "Product designer creating meaningful experiences through design.",
   },
   robots: {
     index: true,
@@ -73,8 +76,13 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-sans antialiased">
+        <PaperBackground />
+        <CloudBackground />
+        <AmbientBackground />
         <Navbar />
-        <main>{children}</main>
+        <PageTransition>
+          <main>{children}</main>
+        </PageTransition>
         <Footer />
       </body>
     </html>

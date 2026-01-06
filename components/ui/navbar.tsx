@@ -1,17 +1,16 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button } from "./button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/#projects", label: "Work" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -19,122 +18,119 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["hsl(var(--background) / 0)", "hsl(var(--background) / 0.8)"]
-  );
-  const backdropBlur = useTransform(scrollY, [0, 100], ["blur(0px)", "blur(12px)"]);
-  const borderOpacity = useTransform(scrollY, [0, 100], [0, 1]);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   if (pathname?.startsWith("/studio")) return null;
 
   return (
     <>
       <motion.header
-        style={{ backgroundColor, backdropFilter: backdropBlur }}
-        className="fixed top-0 left-0 right-0 z-50"
+        variants={{
+          visible: { y: 0 },
+          hidden: { y: -100 },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{ duration: 0.35, ease: "easeInOut" }}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 pointer-events-none"
       >
-        <motion.div
-          style={{ opacity: borderOpacity }}
-          className="absolute bottom-0 left-0 right-0 h-px bg-border"
-        />
-        <nav className="container mx-auto px-4 md:px-6">
-          <div className="flex h-16 md:h-20 items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 1.5, damping: 20, mass: 1.5, ease: "easeInOut" }}
-                className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center"
-              >
-                <Image src="/logo.png" alt="Rohosen" width={32} height={32} className="text-primary-foreground font-bold text-lg" />
-              </motion.div>
-              <span className="font-display font-bold text-lg hidden sm:block">
-                Rohosen
-              </span>
-            </Link>
+        <div className="pointer-events-auto bg-background/80 backdrop-blur-md border border-foreground/5 rounded-full px-2 py-2 shadow-lg flex items-center gap-2 md:gap-4">
+          
+          <Link href="/" className="flex items-center gap-2 pl-4 pr-2">
+            <span className="font-display font-bold text-xl tracking-tight">Mistu</span>
+          </Link>
 
-            <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  <Button
-                    variant="ghost"
-                    className={cn(
-                      "text-muted-foreground hover:text-foreground",
-                      pathname === link.href && "text-foreground bg-accent"
-                    )}
-                  >
-                    {link.label}
-                  </Button>
-                </Link>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Link href="mailto:rohosen2@gmail.com?subject=Hello Roho! I'd like to discuss a project with you." className="hidden md:block">
-                <Button variant="glow">Get in touch</Button>
+          <nav className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-2 py-1">
+            {navLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary">
+                {link.label}
+                {pathname === link.href && (
+                  <motion.div
+                    layoutId="navbar-indicator"
+                    className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
               </Link>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? <X /> : <Menu />}
-              </Button>
-            </div>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2 pr-2">
+            <Link href="mailto:rohosen2@gmail.com" className="hidden md:block">
+              <div className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 active:scale-95">
+                Let&apos;s Talk
+              </div>
+            </Link>
+            
+            <button
+              className="md:hidden p-3 rounded-full hover:bg-secondary transition-colors"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
-        </nav>
+        </div>
       </motion.header>
 
+      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed inset-0 z-40 bg-background pt-20 md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center"
         >
-          <nav className="container px-4 py-8">
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start text-2xl font-display py-6"
-                    >
-                      {link.label}
-                    </Button>
-                  </Link>
-                </motion.div>
-              ))}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-8 right-8 p-4 rounded-full hover:bg-secondary transition-colors"
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <nav className="flex flex-col items-center gap-8">
+            {navLinks.map((link, index) => (
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
-                className="mt-4"
+                key={link.href}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <Link href="mailto:rohosen2@gmail.com?subject=Hello Roho! I'd like to discuss a project with you." onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="glow" className="w-full" size="lg">
-                    Get in touch
-                  </Button>
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-5xl font-display font-bold hover:text-stroke hover:text-transparent transition-all duration-300"
+                >
+                  {link.label}
                 </Link>
               </motion.div>
-            </div>
+            ))}
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="mt-8"
+            >
+              <Link
+                href="mailto:rohosen2@gmail.com"
+                onClick={() => setMobileMenuOpen(false)}
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-xl font-medium"
+              >
+                Get in touch
+              </Link>
+            </motion.div>
           </nav>
         </motion.div>
       )}
     </>
   );
 }
-

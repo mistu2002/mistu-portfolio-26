@@ -4,25 +4,39 @@
 
 @layer base {
   :root {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 72 70% 45%;
-    --primary-foreground: 0 0% 3%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 64%;
-    --accent: 72 70% 45%;
-    --accent-foreground: 0 0% 3%;
-    --destructive: 0 62% 30%;
+    /* Light theme base - Artsy/Modern */
+    --background: 35 30% 96%;        /* Fallback color */
+    --foreground: 0 0% 10%;          /* Almost Black #1A1A1A */
+
+    /* Cards and surfaces */
+    --card: 35 30% 96%;              /* Transparent/Same as bg */
+    --card-foreground: 0 0% 10%;
+    --popover: 35 30% 96%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Primary - Vibrant Blue/Purple for artsy feel */
+    --primary: 220 80% 55%;          /* Electric Blue */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Muted but visible */
+    --secondary: 35 20% 90%;         /* Darker Cream */
+    --secondary-foreground: 0 0% 10%;
+
+    /* Muted */
+    --muted: 35 20% 88%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Accent - Pop of color (Orange?) */
+    --accent: 25 90% 60%;            /* Vibrant Orange */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 72 70% 45%;
+
+    --border: 0 0% 10%;              /* High contrast borders */
+    --input: 0 0% 10%;
+    --ring: 220 80% 55%;
+
     --radius: 0.75rem;
   }
 
@@ -38,6 +52,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 }
 
@@ -49,63 +64,99 @@
   .text-gradient {
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
     background-size: 200% auto;
+    animation: text-shimmer 4s linear infinite;
   }
 
+  @keyframes text-shimmer {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Artsy Utilities */
   .bg-grid {
     background-image: 
-      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
-  .bg-grid-small {
-    background-image: 
-      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  .bg-dot {
-    background-image: radial-gradient(hsl(var(--muted-foreground) / 0.3) 1px, transparent 1px);
-    background-size: 24px 24px;
+      linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.03;
+    position: relative;
   }
 
-  .gradient-blur {
-    @apply absolute inset-0 -z-10;
-    background: radial-gradient(
-      ellipse 80% 80% at 50% -20%,
-      hsl(var(--primary) / 0.15),
-      transparent
-    );
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.08;
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
 
-  .shine {
-    background: linear-gradient(
-      120deg,
-      transparent 30%,
-      hsl(var(--foreground) / 0.1) 50%,
-      transparent 70%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 2s infinite;
+  .organic-blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 10s ease-in-out infinite alternate;
   }
 
-  .border-gradient {
-    border: 1px solid transparent;
-    background: 
-      linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-      linear-gradient(to right, hsl(var(--primary) / 0.5), hsl(var(--accent) / 0.5)) border-box;
+  @keyframes morph {
+    0% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    25% {
+      border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+    50% {
+      border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    }
+    75% {
+      border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+    100% {
+      border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    }
+  }
+
+  .text-stroke {
+    -webkit-text-stroke: 1px hsl(var(--foreground));
+    color: transparent;
+  }
+
+  .text-stroke-sm {
+    -webkit-text-stroke: 0.5px hsl(var(--foreground));
+    color: transparent;
+  }
+
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -113,13 +164,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted rounded-full;
+  @apply bg-foreground/20 rounded-full border-2 border-background;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+  @apply bg-foreground/40;
 }
 
 ::selection {
-  @apply bg-primary/30 text-foreground;
+  @apply bg-primary text-primary-foreground;
 }
