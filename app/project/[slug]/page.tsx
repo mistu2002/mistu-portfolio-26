@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/app/_actions/sanity.actions";
 import { CaseStudyHero } from "@/components/case-study/hero";
+import { ProjectImages } from "@/components/case-study/project-images";
 import { RelatedProjects } from "@/components/case-study/related-projects";
 import type { Metadata } from "next";
 import { urlFor } from "@/sanity/lib/image";
@@ -45,7 +46,12 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <article className="pt-20">
+
+
       <CaseStudyHero project={project} />
+      {project.projectImages && project.projectImages.length > 0 && (
+        <ProjectImages images={project.projectImages} />
+      )}
       <RelatedProjects currentSlug={params.slug} />
     </article>
   );

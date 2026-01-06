@@ -37,28 +37,32 @@ function Cloud({
   const y = useSpring(yRaw, { stiffness: 50, damping: 20 });
 
   return (
-    <motion.div
+    <div
+      className="fixed pointer-events-none select-none scale-[0.6] md:scale-[0.8] lg:scale-100 origin-center will-change-transform"
       style={{
-        position: "absolute",
         top,
         left,
         right,
-        y,
-        filter: `blur(${blur}px)`,
-        opacity,
         zIndex,
-        scale,
       }}
-      className="pointer-events-none select-none"
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className="w-auto h-auto max-w-none"
-      />
-    </motion.div>
+      <motion.div
+        style={{
+          y,
+          filter: `blur(${blur}px)`,
+          opacity,
+          scale,
+        }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className="w-auto h-auto max-w-none"
+        />
+      </motion.div>
+    </div>
   );
 }
 
@@ -69,8 +73,7 @@ export function CloudBackground() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 overflow-hidden pointer-events-none"
-      style={{ zIndex: 0 }}
+      className="fixed inset-0 overflow-hidden pointer-events-none z-[-1000]"
     >
       {/* Top Section Clouds */}
       <Cloud
@@ -79,41 +82,15 @@ export function CloudBackground() {
         width={800}
         height={400}
         top="-10%"
-        right="-30%"
+        right="-10%"
         speed={-0.5}
         blur={2}
         opacity={0.8}
-        zIndex={-100}
+        zIndex={-99}
         scrollY={scrollY}
       />
-      {/* <Cloud
-        src="/cloud-small.png"
-        alt="Small Cloud"
-        width={300}
-        height={150}
-        top="15%"
-        left="5%"
-        speed={0.8}
-        blur={0}
-        opacity={0.9}
-        zIndex={-1}
-        scrollY={scrollY}
-      /> */}
-
+      
       {/* Mid Section Clouds */}
-      {/* <Cloud
-        src="/cloud-med.png"
-        alt="Medium Cloud"
-        width={600}
-        height={300}
-        top="40%"
-        right="15%"
-        speed={-0.3}
-        blur={4}
-        opacity={0.6}
-        zIndex={-2}
-        scrollY={scrollY}
-      /> */}
       <Cloud
         src="/cloud-small.png"
         alt="Large Cloud Background"
@@ -135,10 +112,10 @@ export function CloudBackground() {
         width={250}
         height={120}
         top="105%"
-        right="25%"
+        right="5%"
         speed={1.2}
         blur={2}
-        opacity={0.4}
+        opacity={0.2}
         zIndex={-100}
         scrollY={scrollY}
       />
@@ -148,7 +125,7 @@ export function CloudBackground() {
         width={500}
         height={250}
         top="100%"
-        left="10%"
+        left="40%"
         speed={-0.8}
         blur={3}
         opacity={0.7}
@@ -158,4 +135,3 @@ export function CloudBackground() {
     </div>
   );
 }
-

@@ -26,7 +26,7 @@ export function Projects({ projects, tags }: ProjectsProps) {
         <SectionHeader
           number="01"
           title="Selected Work"
-          subtitle="A collection of projects I've worked on, from full-stack applications to design systems."
+          subtitle="A collection of projects I've worked on, from UI/UX design to 3D animations."
         />
 
         {tags?.length > 0 && (

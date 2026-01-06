@@ -61,7 +61,7 @@ const skills = [
 
 export function About() {
   return (
-    <Section id="about" className="bg-card/30">
+    <Section id="about" className="bg-card/80">
       <div className="container mx-auto px-4 md:px-6">
         <SectionHeader
           number="02"

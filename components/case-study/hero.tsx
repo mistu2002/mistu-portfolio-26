@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { urlFor } from "@/sanity/lib/image";
 import type { Project } from "@/sanity/lib/types";
 import { ArrowLeft, ExternalLink, Github, Figma, Play } from "lucide-react";
+import { FaBehance } from "react-icons/fa";
 
 interface CaseStudyHeroProps {
   project: Project;
@@ -99,8 +100,8 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
                 {project.behanceLink && (
                   <Link href={project.behanceLink} target="_blank">
                     <Button variant="outline">
-                      <Github className="w-4 h-4" />
-                      GitHub
+                      <FaBehance className="w-4 h-4" />
+                      Behance
                     </Button>
                   </Link>
                 )}

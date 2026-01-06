@@ -40,14 +40,14 @@ export function MarqueeSection() {
   return (
     <section className="py-24 overflow-hidden">
       <div className="relative -rotate-2 scale-110">
-        <Marquee pauseOnHover duration="40s" className="border-y border-foreground/5 py-8 bg-background/30 backdrop-blur-sm">
+        <Marquee pauseOnHover duration="40s" className="border-y border-foreground/5 py-8 bg-background/50 backdrop-blur-sm">
           {skills.map((skill) => (
             <MarqueeItem key={skill} text={skill} />
           ))}
         </Marquee>
       </div>
       <div className="relative rotate-1 scale-110 -mt-12">
-        <Marquee pauseOnHover reverse duration="45s" className="border-y border-foreground/5 py-8 bg-background/50 backdrop-blur-sm">
+        <Marquee pauseOnHover reverse duration="45s" className="border-y border-foreground/5 py-8 bg-background/40 backdrop-blur-sm">
           {domains.map((domain) => (
             <MarqueeItem key={domain} text={domain} />
           ))}

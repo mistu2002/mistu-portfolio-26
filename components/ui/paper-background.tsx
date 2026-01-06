@@ -10,7 +10,7 @@ export function PaperBackground() {
         alt="Paper Texture Background"
         fill
         priority
-        className="object-cover opacity-30"
+        className="object-cover opacity-15"
       />
     </div>
   );
