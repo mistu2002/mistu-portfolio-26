@@ -5,14 +5,14 @@ import Link from "next/link";
 import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
 
 const socialLinks = [
-  { href: "https://github.com/roho7", icon: Github, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/rohosen-bhattacharya-9311611aa/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://x.com/Rohosen_", icon: Twitter, label: "Twitter" },
+  { href: "https://dribbble.com/mistudoi", icon: Github, label: "GitHub" },
+  { href: "https://www.linkedin.com/in/suchismita-das-551b44227/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://www.behance.net/suchismitadas2", icon: Twitter, label: "Twitter" },
 ];
 
 export function Footer() {
   return (
-    <footer id="contact" className="relative bg-foreground text-background overflow-hidden">
+    <footer id="contact" className="mx-8 mb-8 rounded-[48px] relative bg-foreground text-background overflow-hidden">
       {/* Decorative Blob */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full pointer-events-none" />
       

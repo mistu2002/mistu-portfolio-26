@@ -47,6 +47,16 @@ function Cloud({
       }}
     >
       <motion.div
+        animate={{
+          x: [0, -7, 7, -4, 4, 0]
+        }}
+        transition={{
+          delay: Math.random()*10,
+          duration: 10,
+          repeat: Infinity, 
+          ease: 'easeInOut',
+          repeatType: 'mirror'
+        }}
         style={{
           y,
           filter: `blur(${blur}px)`,
@@ -89,7 +99,7 @@ export function CloudBackground() {
         zIndex={-99}
         scrollY={scrollY}
       />
-      
+
       {/* Mid Section Clouds */}
       <Cloud
         src="/cloud-small.png"
@@ -119,7 +129,7 @@ export function CloudBackground() {
         zIndex={-100}
         scrollY={scrollY}
       />
-       <Cloud
+      <Cloud
         src="/cloud-med.png"
         alt="Medium Cloud Bottom"
         width={500}

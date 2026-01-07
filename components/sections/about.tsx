@@ -9,54 +9,48 @@ import Link from "next/link";
 
 const experience = [
   {
-    company: "Periskope",
-    role: "Full-Stack Developer",
-    period: "2023 - Present",
+    company: "Nirva Health",
+    role: "Visual Designer",
+    period: "2025 - Present",
     description: "One of the first 5 employees. Built over 10 large features and counting.",
-    link: "https://periskope.app/",
+    link: "https://www.nirvahealth.com/",
   },
   {
-    company: "SimpliML",
-    role: "Full-Stack Developer",
-    period: "2023",
-    description: "Built the foundation of the product from ground up.",
-    link: "https://simpliml.com/",
-  },
-  {
-    company: "Frenzopay",
-    role: "UI/UX Designer",
-    period: "2022 - 2023",
+    company: "Playto",
+    role: "UI/UX Designer (Freelance)",
+    period: "2025",
     description: "Solo designer. Built the entire product design from scratch.",
-    link: "https://frenzopay.com/",
+    link: "https://www.playto.so/",
+  },
+  {
+    company: "Bumbi",
+    role: "UI/UX Designer (Freelance)",
+    period: "2024 - 2025",
+    description: "Solo designer. Built the entire product design from scratch.",
+    link: "", 
+  },
+  {
+    company: "Marcadors Marketing",
+    role: "Motion Graphic Designer",
+    period: "2023",
+    description: "Solo designer. Built the entire product design from scratch.",
+    link: "https://www.marcadors.com/",
   },
 ];
 
 const education = [
   {
-    degree: "M.Sc. Human-Computer Interaction",
-    institution: "University of Nottingham",
-    period: "2023 - 2024",
-    note: "Distinction",
-  },
-  {
-    degree: "CS50x: Introduction to Computer Science",
-    institution: "Harvard University",
-    period: "2023",
-    note: "Certificate",
-  },
-  {
-    degree: "B.Sc. Neuroscience",
+    degree: "BFA, Animation",
     institution: "Amity University Noida",
-    period: "2020 - 2023",
+    period: "2020 - 2024",
     note: "",
   },
 ];
 
 const skills = [
-  { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-  { category: "Backend", items: ["Node.js", "Python", "PostgreSQL", "Firebase"] },
-  { category: "Design", items: ["Figma", "After Effects", "Illustrator"] },
-  { category: "Other", items: ["Unity", "C#", "Git", "Sanity"] },
+  { category: "Design", items: ["Figma", "Primere Pro", "Illustrator", "Photoshop"] },
+  { category: "Animation", items: ["After Effects", "Lottie Animations"] },
+  { category: "Others", items: ["UX Research & Planning", "Wireframing & User Flows", "Interaction Design", "Hi-Fidelity Prototyping", "Design-to-Dev Collab"] },
 ];
 
 export function About() {
@@ -95,14 +89,14 @@ export function About() {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <Link
+                      {exp.link ? <Link
                           href={exp.link}
                           target="_blank"
                           className="inline-flex items-center gap-2 text-lg font-semibold group-hover:text-primary transition-colors"
                         >
                           {exp.company}
                           <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </Link>
+                        </Link> : <p className="text-lg font-semibold group-hover:text-primary transition-colors">{exp.company}</p>}
                         <p className="text-muted-foreground">{exp.role}</p>
                         <p className="text-sm text-muted-foreground mt-1">{exp.description}</p>
                       </div>
