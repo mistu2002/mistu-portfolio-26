@@ -3,11 +3,15 @@
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
+import { FaDribbble } from "react-icons/fa";
+import { FaBehance } from "react-icons/fa";
+
+
 
 const socialLinks = [
-  { href: "https://dribbble.com/mistudoi", icon: Github, label: "GitHub" },
+  { href: "https://dribbble.com/mistudoi", icon: FaDribbble, label: "Dribbble" },
   { href: "https://www.linkedin.com/in/suchismita-das-551b44227/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://www.behance.net/suchismitadas2", icon: Twitter, label: "Twitter" },
+  { href: "https://www.behance.net/suchismitadas2", icon: FaBehance, label: "Behance" },
 ];
 
 export function Footer() {

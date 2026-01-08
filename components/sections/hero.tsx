@@ -55,12 +55,12 @@ export function Hero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
             <Link href="#projects" className="group relative px-8 py-4 bg-foreground text-background rounded-full overflow-hidden">
-              <span className="relative z-10 font-medium text-lg group-hover:text-foreground transition-colors duration-300">View Work</span>
+              <span className="relative z-10 font-medium text-lg group-hover:text-background transition-colors duration-300">View Work</span>
               <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out" />
             </Link>
             
-            <Link href="#contact" className="group px-8 py-4 rounded-full border border-foreground/20 hover:border-foreground transition-colors">
-              <span className="font-medium text-lg">Contact Me</span>
+            <Link href="#contact" className="group px-8 py-4 rounded-full border border-foreground/20 hover:border-primary hover:bg-primary/5 transition-colors">
+              <span className="font-medium text-lg group-hover:text-primary transition-colors duration-300">Contact Me</span>
             </Link>
           </motion.div>
         </div>
