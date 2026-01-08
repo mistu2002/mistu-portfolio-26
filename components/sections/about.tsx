@@ -40,7 +40,7 @@ const experience = [
 
 const education = [
   {
-    degree: "BFA, Animation",
+    degree: "Bachelors in Fine Arts, Animation",
     institution: "Amity University Noida",
     period: "2020 - 2024",
     note: "",

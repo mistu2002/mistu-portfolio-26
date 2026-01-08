@@ -89,7 +89,7 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center gap-2 pr-2">
-            <Link href="mailto:rohosen2@gmail.com" className="hidden md:block">
+            <Link href="mailto:suchismitadas.2002@gmail.com" className="hidden md:block">
               <div className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 active:scale-95">
                 Let&apos;s Talk
               </div>
@@ -148,7 +148,7 @@ export function Navbar() {
               className="mt-8"
             >
               <Link
-                href="mailto:rohosen2@gmail.com"
+                href="mailto:suchismitadas.2002@gmail.com"
                 onClick={() => setMobileMenuOpen(false)}
                 className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-xl font-medium"
               >

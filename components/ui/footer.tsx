@@ -35,13 +35,13 @@ export function Footer() {
           </div>
 
           {/* Contact Actions */}
-          <div className="grid md:grid-cols-2 gap-12 items-end">
+          <div className="grid md:grid-cols-2 gap-8 items-end">
             <div>
               <p className="text-xl md:text-2xl text-background/60 mb-8 max-w-lg">
                 Have a project in mind or just want to say hello? I&apos;m always open to discussing new ideas.
               </p>
               <Link
-                href="mailto:rohosen2@gmail.com"
+                href="mailto:suchismitadas.2002@gmail.com"
                 className="inline-flex items-center gap-4 bg-primary text-primary-foreground px-8 py-4 md:px-10 md:py-5 rounded-full text-xl font-medium hover:scale-105 hover:rotate-2 transition-transform duration-300"
               >
                 Start a Project
@@ -72,7 +72,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-24 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4 text-background/40 text-sm">
+        <div className="mt-24 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-2 text-background/40 text-sm">
           <p>© {new Date().getFullYear()} Rohosen. All Rights Reserved.</p>
           <p className="font-mono">DESIGNED & CODED WITH LOVE ❤️</p>
         </div>
