@@ -7,6 +7,7 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import type { ProjectCard as ProjectCardType } from "@/sanity/lib/types";
 import { ArrowUpRight } from "lucide-react";
+import clsx from "clsx";
 
 interface ProjectCardProps {
   project: ProjectCardType;
@@ -26,7 +27,7 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
         transition={{ duration: 0.5, delay: index * 0.1 }}
         className="space-y-4"
       >
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-secondary/20">
+        <div className={clsx("relative aspect-[4/3] overflow-hidden rounded-2xl bg-secondary/20", featured && "aspect-[7/6]")}>
           {project.coverImage?.asset && (
             <Image
               src={urlFor(project.coverImage).width(1200).height(900).url()}

@@ -27,13 +27,13 @@
     --muted-foreground: 0 0% 40%;
 
     /* Accent - Pop of color (Orange?) */
-    --accent: 25 90% 60%;            /* Vibrant Orange */
+    --accent: 225 90% 60%;            /* Vibrant Orange */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 10%;              /* High contrast borders */
+    --border: 0 0% 70%;              /* High contrast borders */
     --input: 0 0% 10%;
     --ring: 220 80% 55%;
 

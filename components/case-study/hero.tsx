@@ -20,7 +20,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="gradient-blur opacity-50" />
       
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-20 relative z-10">
+    <div className="container mx-auto px-4 md:px-6 py-12 md:pt-20 relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -109,27 +109,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
         </div>
       </div>
 
-      {project.coverImage && (
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="relative mt-8 md:mt-12"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-2xl md:rounded-3xl">
-              <Image
-                src={urlFor(project.coverImage).width(1920).height(820).url()}
-                alt={project.coverImage.alt || project.title}
-                fill
-                priority
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
-            </div>
-          </div>
-        </motion.div>
-      )}
+      
 
       {project.video && (
         <motion.div

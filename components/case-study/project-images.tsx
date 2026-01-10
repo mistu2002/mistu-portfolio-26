@@ -32,9 +32,9 @@ export function ProjectImages({ images }: ProjectImagesProps) {
 
   return (
     <>
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-5xl mx-auto space-y-12 md:space-y-20">
+          <div className="max-w-full mx-auto space-y-12 md:space-y-20">
             {images.map((image, index) => (
               <motion.figure
                 key={index}
@@ -42,17 +42,20 @@ export function ProjectImages({ images }: ProjectImagesProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.1, 0.3) }}
-                className="group cursor-pointer"
+                className="group"
+                style={{
+                  cursor: "zoom-in"
+                }}
                 onClick={() => setSelectedImage(index)}
               >
-                <div className="relative overflow-hidden rounded-lg bg-card/30 backdrop-blur-sm border border-foreground/5">
+                <div className="relative oerflow-hidden rounded-[48px] bg-card/30 backdrop-blur-sm border border-foreground/5">
                   <div className="relative w-full">
                     <Image
                       src={urlFor(image).width(1920).quality(90).url()}
                       alt={image.alt || ""}
                       width={1920}
                       height={1080}
-                      className="w-full h-auto transition-all duration-500 group-hover:scale-[1.01]"
+                      className="w-full h-auto transition-all duration-500 group-hover:scale-[1.005]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                       priority={index === 0}
                     />

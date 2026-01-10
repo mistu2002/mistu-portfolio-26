@@ -46,8 +46,6 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <article className="pt-20">
-
-
       <CaseStudyHero project={project} />
       {project.projectImages && project.projectImages.length > 0 && (
         <ProjectImages images={project.projectImages} />
