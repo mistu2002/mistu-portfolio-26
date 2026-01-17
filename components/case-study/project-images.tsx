@@ -32,7 +32,7 @@ export function ProjectImages({ images }: ProjectImagesProps) {
 
   return (
     <>
-      <section className="pb-16 md:pb-24">
+      <section className="py-16 md:py-24 rounded-md overflow-clip">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-full mx-auto space-y-12 md:space-y-20">
             {images.map((image, index) => (

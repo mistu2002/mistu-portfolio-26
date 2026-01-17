@@ -74,8 +74,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-1 text-background/40 text-sm">
-          <p>© {new Date().getFullYear()} Rohosen. All Rights Reserved.</p>
-          <p className="font-mono">DESIGNED & CODED WITH LOVE ❤️</p>
+          <p>© {new Date().getFullYear()} Mistu. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

@@ -89,7 +89,7 @@ export function About() {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                      {exp.link ? <Link
+                        {exp.link ? <Link
                           href={exp.link}
                           target="_blank"
                           className="inline-flex items-center gap-2 text-lg font-semibold group-hover:text-primary transition-colors"

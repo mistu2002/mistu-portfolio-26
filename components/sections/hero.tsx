@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowDown, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { SlotMachine } from "../ui/slot-machine";
 import Image from "next/image"
 
 export function Hero() {
@@ -25,15 +26,29 @@ export function Hero() {
 
           {/* Main Title */}
           <div className="text-center mb-16 space-y-4">
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
+          <motion.h1
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter leading-[0.9]"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="block text-6xl md:text-8xl lg:text-9xl font-display font-bold tracking-tighter text-foreground leading-[0.9]"
             >
-              Hello
-              <span className="block text-primary italic font-serif">World</span>
-              {/* People */}
+              {/* <SlotMachine
+                items={["Designing", "Drawing", "Crafting", "Conceptualizing"]}
+                interval={2800}
+                // highlightColor={true}
+              /> */}
+              Designing
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="block text-6xl md:text-8xl lg:text-9xl text-primary italic font-serif tracking-tighter leading-[0.9]"
+            >
+              <SlotMachine
+                items={["apps", "interfaces", "websites", "products"]}
+                interval={3500}
+              />
             </motion.h1>
 
             <motion.div
