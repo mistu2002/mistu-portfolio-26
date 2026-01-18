@@ -20,6 +20,7 @@ export function Navbar() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState(pathname);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
@@ -49,6 +50,10 @@ export function Navbar() {
     }
   };
 
+  const handleLinkClick = (href: string) => {
+    setActiveTab(href);
+  };
+
   if (pathname?.startsWith("/studio")) return null;
 
   return (
@@ -69,15 +74,17 @@ export function Navbar() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full px-2 py-1">
-            {navLinks.map((link) => (
+            {navLinks.map((link) => {
+              const isActive = activeTab === link.href;
+              return(
               <Link 
                 key={link.href} 
                 href={link.href} 
-                onClick={(e) => handleScroll(e, link.href)}
+                onClick={(e) => {handleScroll(e, link.href); handleLinkClick(link.href)}}
                 className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-primary"
               >
                 {link.label}
-                {pathname === link.href && (
+                {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
                     className="absolute inset-0 bg-white rounded-full shadow-sm -z-10"
@@ -85,7 +92,7 @@ export function Navbar() {
                   />
                 )}
               </Link>
-            ))}
+            )})}
           </nav>
 
           <div className="flex items-center gap-2 pr-2">

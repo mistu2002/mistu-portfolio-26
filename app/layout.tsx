@@ -3,7 +3,6 @@ import { Space_Grotesk, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
-import { AmbientBackground } from "@/components/ui/ambient-background";
 import { CloudBackground } from "@/components/ui/cloud-background";
 import { PageTransition } from "@/components/ui/page-transition";
 import { PaperBackground } from "@/components/ui/paper-background";
@@ -78,7 +77,6 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <PaperBackground />
         <CloudBackground />
-        <AmbientBackground />
         <Navbar />
         <PageTransition>
           <main>{children}</main>
