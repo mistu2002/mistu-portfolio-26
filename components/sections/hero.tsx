@@ -25,7 +25,7 @@ export function Hero() {
           </motion.div>
 
           {/* Main Title */}
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-12 space-y-4">
           <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -99,11 +99,11 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
       >
         <span className="text-xs uppercase tracking-widest text-muted-foreground">Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, -6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDown className="w-5 h-5 text-foreground/50" />
